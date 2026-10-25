@@ -1,7 +1,7 @@
 const people = {
-  lena: { name: 'Lena Müller', initials: 'LM', avatarClass: 'avatar-lena' },
-  jonas: { name: 'Jonas Schmidt', initials: 'JS', avatarClass: 'avatar-jonas' },
-  amira: { name: 'Amira Kaya', initials: 'AK', avatarClass: 'avatar-amira' },
+  lena: { initials: 'LL', avatarClass: 'avatar-lena' },
+  jonas: { initials: 'CL', avatarClass: 'avatar-jonas' },
+  amira: { initials: 'BL', avatarClass: 'avatar-amira' },
 };
 
 const initialTasks = [
@@ -133,11 +133,9 @@ function createTaskCard(task) {
   assignee.className = 'task-assignee';
   const avatar = document.createElement('span');
   avatar.className = `avatar ${person.avatarClass}`;
-  avatar.setAttribute('aria-label', person.name);
+  avatar.setAttribute('aria-label', person.initials);
   avatar.textContent = person.initials;
-  const name = document.createElement('span');
-  name.textContent = person.name.split(' ')[0];
-  assignee.append(avatar, name);
+  assignee.append(avatar);
 
   const due = document.createElement('span');
   due.className = 'task-due';
