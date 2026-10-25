@@ -6,93 +6,48 @@ const people = {
 
 const initialTasks = [
   {
-    title: 'Moodboard für die neue Marke',
-    description: 'Farben und visuelle Richtung für den Markenauftritt sammeln.',
-    category: 'Design',
+    title: 'Wäsche waschen',
+    description: 'Schmutzige Wäsche sortieren, waschen und zum Trocknen aufhängen.',
+    category: 'Wäsche',
     assignee: 'lena',
-    due: '24. Okt.',
+    due: 'Kein Termin',
     status: 'tasks',
-    priority: 'high',
+    priority: 'normal',
   },
   {
-    title: 'Kick-off Agenda erstellen',
-    description: 'Themen und Ziele für den gemeinsamen Projektstart festhalten.',
-    category: 'Planung',
+    title: 'Zimmer aufräumen',
+    description: 'Gegenstände wegräumen und Oberflächen ordentlich hinterlassen.',
+    category: 'Ordnung',
     assignee: 'jonas',
-    due: '26. Okt.',
+    due: 'Kein Termin',
     status: 'tasks',
     priority: 'normal',
   },
   {
-    title: 'Texte für die Startseite',
-    description: 'Erste Entwürfe für Intro, Leistungen und Über uns vorbereiten.',
-    category: 'Inhalt',
+    title: 'Geschirr spülen',
+    description: 'Benutztes Geschirr abwaschen und anschließend abtrocknen.',
+    category: 'Küche',
     assignee: 'amira',
-    due: '28. Okt.',
+    due: 'Kein Termin',
     status: 'tasks',
     priority: 'normal',
   },
   {
-    title: 'Zielgruppe definieren',
-    description: 'Personas und die wichtigsten Nutzerbedürfnisse abstimmen.',
-    category: 'Planung',
+    title: 'Hund Gassi gehen',
+    description: 'Mit dem Hund eine Runde draußen spazieren gehen.',
+    category: 'Haustier',
     assignee: 'lena',
-    due: '30. Okt.',
+    due: 'Kein Termin',
     status: 'tasks',
-    priority: 'normal',
-  },
-  {
-    title: 'Wireframes für Landingpage',
-    description: 'Den ersten Seitenaufbau für Desktop und Mobile skizzieren.',
-    category: 'Design',
-    assignee: 'lena',
-    due: '25. Okt.',
-    status: 'progress',
-    priority: 'high',
-  },
-  {
-    title: 'Bildwelt recherchieren',
-    description: 'Passende Bildsprache und Bildmaterial für das Projekt finden.',
-    category: 'Design',
-    assignee: 'amira',
-    due: '27. Okt.',
-    status: 'progress',
-    priority: 'normal',
-  },
-  {
-    title: 'Technisches Setup',
-    description: 'Repository, Entwicklungsumgebung und Projektstruktur einrichten.',
-    category: 'Entwicklung',
-    assignee: 'jonas',
-    due: '29. Okt.',
-    status: 'progress',
-    priority: 'normal',
-  },
-  {
-    title: 'Projektziele abgestimmt',
-    description: 'Gemeinsame Ziele und Rahmenbedingungen sind festgehalten.',
-    category: 'Planung',
-    assignee: 'jonas',
-    due: '21. Okt.',
-    status: 'done',
-    priority: 'normal',
-  },
-  {
-    title: 'Kick-off durchgeführt',
-    description: 'Das Team ist gestartet und die nächsten Schritte sind klar.',
-    category: 'Inhalt',
-    assignee: 'amira',
-    due: '22. Okt.',
-    status: 'done',
     priority: 'normal',
   },
 ];
 
 const categoryClasses = {
-  Design: 'category-design',
-  Inhalt: 'category-inhalt',
-  Planung: 'category-planung',
-  Entwicklung: 'category-entwicklung',
+  Wäsche: 'category-waesche',
+  Ordnung: 'category-ordnung',
+  Küche: 'category-kueche',
+  Haustier: 'category-haustier',
 };
 
 const taskDialog = document.querySelector('#task-dialog');
@@ -113,7 +68,7 @@ function createTaskCard(task) {
   const top = document.createElement('div');
   top.className = 'task-card-top';
   const category = document.createElement('span');
-  category.className = `category ${categoryClasses[task.category] ?? 'category-planung'}`;
+  category.className = `category ${categoryClasses[task.category] ?? 'category-ordnung'}`;
   category.textContent = task.category;
   const priority = document.createElement('span');
   priority.className = `priority${task.priority === 'high' ? ' priority-high' : ''}`;
