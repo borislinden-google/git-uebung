@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6fa">
+    <title>Taskflow – Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="Taskflow Startseite">
+          <span class="brand-mark" aria-hidden="true">t</span>
+          <span>taskflow<span class="brand-period">.</span></span>
+        </a>
+
+        <div class="workspace-label">WORKSPACE</div>
+        <button class="workspace-switcher" type="button">
+          <span class="workspace-icon" aria-hidden="true">✳</span>
+          <span class="workspace-name">Studio Nord</span>
+          <span class="switcher-chevron" aria-hidden="true">⌄</span>
+        </button>
+
+        <nav class="primary-nav" aria-label="Hauptnavigation">
+          <a class="nav-link" href="#board">
+            <span class="nav-icon" aria-hidden="true">⌂</span>
+            Übersicht
+          </a>
+          <a class="nav-link active" href="#board" aria-current="page">
+            <span class="nav-icon board-nav-icon" aria-hidden="true">▦</span>
+            Mein Board
+            <span class="nav-count">3</span>
+          </a>
+          <a class="nav-link" href="#team">
+            <span class="nav-icon" aria-hidden="true">♧</span>
+            Team
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="sidebar-divider"></div>
+          <div class="profile-card">
+            <span class="avatar avatar-lena" aria-label="Lena Müller">LM</span>
+            <span class="profile-copy">
+              <strong>Lena Müller</strong>
+              <span>Projektmanagerin</span>
+            </span>
+            <button class="profile-menu" type="button" aria-label="Profilmenü">···</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content" id="board">
+        <header class="topbar">
+          <div class="breadcrumb"><span>Studio Nord</span><span aria-hidden="true">/</span><strong>Mein Board</strong></div>
+          <div class="topbar-actions">
+            <button class="icon-button notification-button" type="button" aria-label="Benachrichtigungen">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+              <span class="notification-dot"></span>
+            </button>
+            <span class="topbar-divider"></span>
+            <span class="avatar avatar-lena topbar-avatar" aria-label="Lena Müller">LM</span>
+          </div>
+        </header>
+
+        <section class="board-page" aria-labelledby="page-title">
+          <div class="board-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-dot"></span> PROJEKTÜBERSICHT</div>
+              <h1 id="page-title">Kreativprojekt <span class="title-sparkle" aria-hidden="true">✳</span></h1>
+              <p class="board-description">Gute Ideen werden gemeinsam umgesetzt.</p>
+            </div>
+            <div class="board-heading-actions">
+              <div class="team-stack" id="team" aria-label="Projektteam: Lena Müller, Jonas Schmidt und Amira Kaya">
+                <span class="avatar avatar-lena" title="Lena Müller">LM</span>
+                <span class="avatar avatar-jonas" title="Jonas Schmidt">JS</span>
+                <span class="avatar avatar-amira" title="Amira Kaya">AK</span>
+              </div>
+              <span class="team-label">3 im Team</span>
+              <span class="action-divider"></span>
+              <button class="share-button" type="button"><span aria-hidden="true">↗</span> Teilen</button>
+            </div>
+          </div>
+
+          <div class="board-toolbar">
+            <div class="view-label"><span class="view-icon" aria-hidden="true">▦</span> Board-Ansicht</div>
+            <div class="toolbar-controls">
+              <label class="search-box">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input id="search-input" type="search" placeholder="Aufgaben suchen" aria-label="Aufgaben suchen">
+                <kbd>/</kbd>
+              </label>
+              <label class="filter-select">
+                <span aria-hidden="true">☷</span>
+                <select id="assignee-filter" aria-label="Nach Person filtern">
+                  <option value="all">Alle Personen</option>
+                  <option value="lena">Lena</option>
+                  <option value="jonas">Jonas</option>
+                  <option value="amira">Amira</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <section class="kanban-board" aria-label="Kanban Board">
+            <section class="kanban-column column-tasks" data-status="tasks" aria-labelledby="tasks-heading">
+              <div class="column-header">
+                <div class="column-title-wrap">
+                  <span class="status-dot status-tasks"></span>
+                  <h2 id="tasks-heading">Aufgaben</h2>
+                  <span class="column-count" data-count-for="tasks">0</span>
+                </div>
+                <button class="column-menu" type="button" aria-label="Optionen für Aufgaben">···</button>
+              </div>
+              <div class="task-list" data-list-for="tasks"></div>
+              <button class="add-task-button" type="button" data-add-to="tasks"><span>＋</span> Aufgabe hinzufügen</button>
+            </section>
+
+            <section class="kanban-column column-progress" data-status="progress" aria-labelledby="progress-heading">
+              <div class="column-header">
+                <div class="column-title-wrap">
+                  <span class="status-dot status-progress"></span>
+                  <h2 id="progress-heading">In Bearbeitung</h2>
+                  <span class="column-count" data-count-for="progress">0</span>
+                </div>
+                <button class="column-menu" type="button" aria-label="Optionen für In Bearbeitung">···</button>
+              </div>
+              <div class="task-list" data-list-for="progress"></div>
+              <button class="add-task-button" type="button" data-add-to="progress"><span>＋</span> Aufgabe hinzufügen</button>
+            </section>
+
+            <section class="kanban-column column-done" data-status="done" aria-labelledby="done-heading">
+              <div class="column-header">
+                <div class="column-title-wrap">
+                  <span class="status-dot status-done"></span>
+                  <h2 id="done-heading">Fertig</h2>
+                  <span class="column-count" data-count-for="done">0</span>
+                </div>
+                <button class="column-menu" type="button" aria-label="Optionen für Fertig">···</button>
+              </div>
+              <div class="task-list" data-list-for="done"></div>
+              <button class="add-task-button" type="button" data-add-to="done"><span>＋</span> Aufgabe hinzufügen</button>
+            </section>
+          </section>
+
+          <p class="board-hint"><span aria-hidden="true">✦</span> Tipp: Ziehe Aufgaben per Drag &amp; Drop in eine andere Spalte.</p>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="task-dialog" id="task-dialog">
+      <form id="task-form">
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">NEUE AUFGABE</span>
+            <h2>Was steht an?</h2>
+          </div>
+          <button class="dialog-close" type="button" aria-label="Dialog schließen">×</button>
+        </div>
+        <label class="form-field">
+          <span>Titel</span>
+          <input name="title" type="text" maxlength="90" placeholder="z. B. Landingpage entwerfen" required>
+        </label>
+        <label class="form-field">
+          <span>Beschreibung <small>Optional</small></span>
+          <textarea name="description" rows="3" maxlength="180" placeholder="Worum geht es bei der Aufgabe?"></textarea>
+        </label>
+        <div class="form-row">
+          <label class="form-field">
+            <span>Verantwortlich</span>
+            <select name="assignee">
+              <option value="lena">Lena Müller</option>
+              <option value="jonas">Jonas Schmidt</option>
+              <option value="amira">Amira Kaya</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Kategorie</span>
+            <select name="category">
+              <option value="Design">Design</option>
+              <option value="Inhalt">Inhalt</option>
+              <option value="Planung">Planung</option>
+              <option value="Entwicklung">Entwicklung</option>
+            </select>
+          </label>
+        </div>
+        <div class="dialog-actions">
+          <button class="cancel-button" type="button">Abbrechen</button>
+          <button class="submit-button" type="submit">Aufgabe erstellen <span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
