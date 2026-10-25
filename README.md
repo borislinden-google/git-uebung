@@ -1,4 +1,4 @@
-# git-uebung
+# Übung B
 
 Das ist mein erster Test
 
